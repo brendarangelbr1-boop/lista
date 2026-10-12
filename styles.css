@@ -1,0 +1,357 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+
+  --bg: #f3f4fa;
+  --surface: #ffffff;
+  --text: #1a2238;
+  --text-soft: #3d4560;
+  --muted: #8b90a3;
+  --border: #d3d6e3;
+  --primary: #c9387f;
+  --primary-dark: #b02c6d;
+  --danger: #c93b47;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+main {
+  width: 100%;
+  max-width: 24.375rem;
+  margin: 0 auto;
+  padding: 3.5rem 2rem 2rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Cabeçalho */
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.back:hover {
+  color: var(--primary-dark);
+}
+
+h1 {
+  margin-top: 0.875rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Formulário */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 2.25rem;
+}
+
+input[type="text"] {
+  outline: 0;
+
+  color: var(--text);
+  border: 2px solid var(--border);
+  border-radius: 0.75rem;
+
+  background-color: var(--bg);
+  padding: 0.75rem 1rem;
+
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+
+  transition: border-color 0.2s;
+}
+
+input[type="text"]::placeholder {
+  color: var(--muted);
+}
+
+input[type="text"]:focus {
+  border-color: var(--primary);
+}
+
+input[type="text"].invalid {
+  border-color: var(--danger);
+}
+
+form button {
+  height: 2.75rem;
+
+  background-color: var(--primary);
+
+  border: none;
+  border-radius: 0.75rem;
+
+  color: #fff;
+
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  outline: 0;
+}
+
+form button:hover {
+  background-color: var(--primary-dark);
+}
+
+form button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Lista */
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  margin-top: 2.5rem;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 3.5625rem;
+  padding: 0 1rem 0 0.75rem;
+
+  background-color: var(--surface);
+  border-radius: 0.875rem;
+}
+
+.item label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+.item input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.box {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+
+  border: 1.5px solid var(--border);
+  border-radius: 0.25rem;
+  background-color: var(--bg);
+
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.item input:focus-visible + .box {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.item input:checked + .box {
+  background: var(--primary) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l3 3 6-7'/%3E%3C/svg%3E") center / 100% no-repeat;
+  border-color: var(--primary);
+}
+
+.name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-soft);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item input:checked ~ .name {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.remove {
+  display: grid;
+  place-items: center;
+
+  width: 2rem;
+  height: 2rem;
+
+  color: var(--muted);
+  background: none;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  outline: 0;
+
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.remove:hover,
+.remove:focus-visible {
+  color: var(--danger);
+  background-color: #fbeaec;
+}
+
+/* Estado vazio */
+.empty {
+  display: none;
+
+  margin-top: 2.5rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.show-empty {
+  display: block;
+}
+
+/* Alerta */
+.toast {
+  display: none;
+  align-items: center;
+  gap: 0.625rem;
+
+  margin-top: 2rem;
+  padding: 0 1rem;
+  height: 2.75rem;
+
+  background-color: var(--danger);
+  border-radius: 0.75rem;
+
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.show-toast {
+  display: flex;
+  animation: toast-in 0.2s ease-out;
+}
+
+.toast span {
+  flex: 1;
+}
+
+.toast button {
+  display: grid;
+  place-items: center;
+
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+.toast button:hover {
+  opacity: 1;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(-0.375rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+/* 1) troque o fundo do input (vale pra mobile e desktop) */
+input[type="text"] {
+  /* ... resto igual ... */
+  background-color: var(--surface);   /* era var(--bg) */
+}
+
+/* 2) o espaço do toast na foto é ~36px */
+.toast {
+  margin-top: 2.25rem;                /* era 2rem */
+}
+
+/* 3) logo: escondido no mobile */
+.logo {
+  display: none;
+}
+
+/* 4) desktop */
+@media (min-width: 48rem) {
+  main {
+    max-width: 39.1875rem;            /* ~627px */
+    padding: 1.875rem 0 2rem;
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4.25rem;
+  }
+
+  .logo img,
+  .logo svg {
+    height: 2rem;
+  }
+
+  h1 {
+    margin-top: 0.875rem;
+  }
+
+  form {
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 2.75rem;
+  }
+
+  input[type="text"] {
+    flex: 1;
+    min-width: 0;
+  }
+
+  form button {
+    width: 10rem;                     /* 160px */
+    flex-shrink: 0;
+  }
+
+  .item {
+    height: 3.0625rem;                /* 49px */
+  }
+}
